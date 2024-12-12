@@ -1,0 +1,29 @@
+{% extends 'partials/base.html' %}
+{% block title %}Login Page{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="border p-4 bg-white">
+                {% for msg in messages %}
+                {% if msg %}
+                <div class="alert alert-{{ msg.tags }}">
+                    {{ msg }}
+                </div>
+                {% endif %}
+                {% endfor %}
+                <h3>Login Page</h3>
+                <hr>
+                <form method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <br>
+                    <input type="submit" value="Login" class="btn btn-primary">
+                    <a class="mx-4" href="{% url 'password_reset' %}">Forget Password</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
